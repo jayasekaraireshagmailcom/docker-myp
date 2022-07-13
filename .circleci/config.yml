@@ -4,8 +4,8 @@ jobs:
    docker:
     - image: node:16-alpine
         auth:
-          username:
-          password:
+          username: iresha123
+          password: ***19891012***d
   environment:
     TEST_REPOSITORY:
   working_directory: ~/app
