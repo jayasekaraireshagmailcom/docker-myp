@@ -6,7 +6,7 @@ jobs:
     docker:
       - image: cimg/node:16-alpine
         auth:
-          username: iresha123
+          username: "iresha123"
           password: "***19891012***"  # context / project UI env-var reference
     steps:
       - checkout
@@ -15,7 +15,7 @@ jobs:
     docker:
       - image: cimg/node:16-alpine
         auth:
-          username: iresha123
+          username: "iresha123"
           password: "***19891012***"   # context / project UI env-var reference
     steps:
       - checkout
