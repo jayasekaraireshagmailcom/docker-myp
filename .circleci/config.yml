@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - run: |
-          docker build -t diliniiresha/docker-myp -f ~/Dockerfile.dev .
+          docker build -t diliniiresha/docker-myp -f Dockerfile.dev .
           docker run diliniiresha/docker-myp npm run test -- --coverage
 workflows:
   version: 2
