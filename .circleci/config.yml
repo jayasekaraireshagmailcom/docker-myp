@@ -1,13 +1,30 @@
-version: 2.1
+version: 2
+
+# Define the jobs we want to run for this project
 jobs:
   build:
     docker:
       - image: cimg/node:16-alpine
         auth:
-          username: jayasekaraireshagmailcom
-          password: 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
-    parallelism: 10
-    resource_class: large    
-    working_directory: ~/app
+          username: iresha123
+          password: "***19891012***"  # context / project UI env-var reference
     steps:
-      - run: docker build -t diliniiresha/docker-myp -f Dockerfile.dev .
+      - checkout
+      - run: echo "this is the build job"
+  test:
+    docker:
+      - image: cimg/node:16-alpine
+        auth:
+          username: iresha123
+          password: "***19891012***"   # context / project UI env-var reference
+    steps:
+      - checkout
+      - run: echo "this is the test job"
+
+# Orchestrate our job run sequence
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test
