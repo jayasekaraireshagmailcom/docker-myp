@@ -6,9 +6,10 @@ jobs:
         auth:
           username: $DOCKER_USER
           password: $DOCKER_PW
-
     steps:
       - checkout
+      - run:
+          docker-compose up
       - run: |
           docker build -t diliniiresha/docker-myp -f Dockerfile.dev .
           docker run diliniiresha/docker-myp npm run test -- --coverage
