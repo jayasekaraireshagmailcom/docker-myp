@@ -21,9 +21,6 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - persist_to_workspace:
-          root: ~/repo
-          path: .
   eb-demo:
     docker:
       - image: circleci/node:16-alpine

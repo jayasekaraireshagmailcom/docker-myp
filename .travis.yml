@@ -6,3 +6,12 @@ before_install:
   - docker build -t diliniiresha/docker-myp -f Dockerfile.dev .
 script:
   - docker run diliniiresha/docker-myp npm run test -- --coverage
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  name: "docker-myp"
+  env: "Dockermyp-env"
+  bucket_name: "elasticbeanstalk-us-east-1-120220778529"
+  bucket_path: "docker-myp"
+  on:
+    branch: master
