@@ -10,6 +10,7 @@ jobs:
       - checkout
       - setup_remote_docker:
           version: 20.10.14
+          docker_layer_caching: true
       - run: |
           docker build -t diliniiresha/docker-myp -f Dockerfile.dev .
           docker run diliniiresha/docker-myp npm run test -- --coverage
