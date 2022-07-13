@@ -6,12 +6,14 @@ jobs:
         auth:
           username: $DOCKER_USER
           password: $DOCKER_PW
+      - image: alpine:3.14
     steps:
       - checkout
       - setup_remote_docker:
           version: 20.10.14
           docker_layer_caching: true
       - run: |
+          docker login - u 'iresha123' -p 'f99d2784-4195-490d-986b-75a84096e875'
           docker build -t diliniiresha/docker-myp -f Dockerfile.dev .
           docker run diliniiresha/docker-myp npm run test -- --coverage
 workflows:
