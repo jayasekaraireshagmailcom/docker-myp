@@ -3,9 +3,7 @@ jobs:
   build:
     docker:
       - image: node:16-alpine
-          auth:
-            username: "iresha123"
-            password: "***19891012***"
+
     steps:
       - checkout
       - run: |
