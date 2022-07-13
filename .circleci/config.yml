@@ -1,25 +1,49 @@
-version: 2
-
-# Define the jobs we want to run for this project
+version: '2.1'
+orbs:
+  eb: circleci/aws-elastic-beanstalk@2.0.1
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: circleci/node:16-alpine
 jobs:
-  build:
-    docker:
-      - image: cimg/node:16-alpine
+  core:
+    <<: *defaults
+    working_directory: ~/repo
     steps:
       - checkout
-      - run: docker build -t diliniiresha/docker-myp -f Dockerfile.dev .
-  test:
+      - restore_cache:
+          keys:
+            - vi-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run: npm ci
+      - run: npm run test:ci
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - persist_to_workspace:
+          root: ~/repo
+          path: .
+  eb-demo:
     docker:
-      - image: cimg/node:16-alpine
-  # context / project UI env-var reference
+      - image: circleci/node:16-alpine
     steps:
       - checkout
-      - run: docker run diliniiresha/docker-myp npm run test -- --coverage
-
-# Orchestrate our job run sequence
+      - eb/setup
+      - run:
+          command:
+            eb create diliniiresha
+            eb deploy diliniiresha
+            eb status
+          name: You may now use the EB CLI within this job
 workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - build
-      - test
+  version: 2.1
+  core:
+    elastic-beanstalk-workflow:
+      jobs:
+        - core:
+            filters:
+              branches:
+                only:
+                  - master
+        - eb-demo
