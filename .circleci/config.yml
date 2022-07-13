@@ -13,6 +13,7 @@ jobs:
           environment:
             COMPOSE_VERSION: '1.29.2'
           command: |
+            npm i curl
             curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o ~/docker-compose
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
