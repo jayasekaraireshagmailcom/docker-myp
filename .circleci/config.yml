@@ -1,19 +1,16 @@
 version: 2.1
 jobs:
   build:
-   docker:
-    - image: node:16-alpine
-        auth:
-          username: iresha123
-          password: ***19891012***d
-  environment:
-    TEST_REPOSITORY:
-  working_directory: ~/app
-  steps:
-    - checkout
-    - run: |
-        docker build -t diliniiresha/docker-myp -f ~/Dockerfile.dev .
-        docker run diliniiresha/docker-myp npm run test -- --coverage
+    docker:
+      - image: node:16-alpine
+          auth:
+            username: iresha123
+            password: ***19891012***d
+    steps:
+      - checkout
+      - run: |
+          docker build -t diliniiresha/docker-myp -f ~/Dockerfile.dev .
+          docker run diliniiresha/docker-myp npm run test -- --coverage
 workflows:
   version: 2
   build-deploy:
