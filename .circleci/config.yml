@@ -5,8 +5,11 @@ jobs:
       - image: node:16-alpine
 
     steps:
+      - setup_remote_docker:
+          version: 20.10.17
       - checkout
       - run: |
+          docker login --username $DOCKER_USER --password-stdin $DOCKER_PW
           docker build -t diliniiresha/docker-myp -f Dockerfile.dev .
           docker run diliniiresha/docker-myp npm run test -- --coverage
 workflows:
