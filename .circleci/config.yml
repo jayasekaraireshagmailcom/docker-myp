@@ -32,8 +32,7 @@ jobs:
       - run:
           name: Build and push Docker image
           command: |
-            . helloworld/bin/activate
-          pyinstaller -F hello_world.py         
+          echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin         
           docker build -t diliniiresha/docker-myp -f Dockerfile.dev .
           docker run diliniiresha/docker-myp npm run test -- --coverage
 workflows:
