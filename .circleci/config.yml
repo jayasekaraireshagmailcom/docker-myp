@@ -6,18 +6,23 @@ jobs:
         auth:
           username: $DOCKER_USER
           password: $DOCKER_PW
-      - image: alpine:3.14
     steps:
       - checkout
+
+
       - setup_remote_docker:
           version: 20.10.14
           docker_layer_caching: true
+
       - run: |
-          docker login - u 'iresha123' -p 'f99d2784-4195-490d-986b-75a84096e875'
+          TAG=0.1.'f99d2784-4195-490d-986b-75a84096e875'
+          docker build -t CircleCI-Public/circleci-demo-docker:$TAG .
+          echo $DOCKER_PASS | docker login -u 'iresha123' --password-stdin
+          docker push CircleCI-Public/circleci-demo-docker:$TAG          
           docker build -t diliniiresha/docker-myp -f Dockerfile.dev .
           docker run diliniiresha/docker-myp npm run test -- --coverage
 workflows:
-  version: 2
+  version: 2.1
   build-deploy:
     jobs:
       - build
