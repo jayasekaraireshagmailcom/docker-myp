@@ -21,8 +21,6 @@ jobs:
             echo 'export IMAGE_NAME=python-circleci-docker' >> $BASH_ENV 
             . helloworld/bin/activate
             pip install --no-cache-dir -r requirements.txt
-      - run:
-          name: Run Tests
 
       - setup_remote_docker:
           docker_layer_caching: true
