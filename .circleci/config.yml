@@ -73,8 +73,6 @@ jobs:
           type: string
     steps:
       - checkout
-      - setup
-      
       - run:
           command: |
             eb: circleci/aws-elastic-beanstalk@1.0.0
