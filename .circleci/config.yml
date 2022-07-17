@@ -46,21 +46,12 @@ jobs:
       name: node/default
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
-            - run: npm test
-            - run:
-                name: Installing deployment dependencies
-                command: |
-                  sudo apt-get -y -qq update
-                  sudo apt-get install python-pip python-dev build-essential
-                  sudo pip install --upgrade setuptools
-                  sudo pip install awsebcli --upgrade
-            - run:
-                name: Deploying
-                command: |
-                  eb deploy Dockermyp-env
+      
+      steps:
+        - run:
+            name: Deploying
+            command: |
+              eb deploy Dockermyp-env
     # parameters:
     #   app-dir:
     #       default: .
