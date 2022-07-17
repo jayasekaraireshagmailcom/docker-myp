@@ -18,6 +18,16 @@ jobs:
           command: |
             echo 'export TAG=0.1.${CIRCLE_BUILD_NUM}' >> $BASH_ENV
             echo 'export IMAGE_NAME=python-circleci-docker' >> $BASH_ENV 
+  test:
+    docker:
+      - image: docker:alpine
+        auth: 
+          username: $DOCKER_USER
+          password: $DOCKER_PW
+    steps:
+      - checkout:
+
+
       - run: |
           echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin 
           docker run -d --name db company/proprietary-db:1.2.3 
@@ -30,4 +40,5 @@ workflows:
   build-deploy:
     jobs:
       - build
+      - test
 
