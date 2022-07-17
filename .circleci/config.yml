@@ -37,21 +37,30 @@
 #           docker run diliniiresha/docker-myp npm run test -- --coverage
 version: 2.1
 
+orbs: 
+  eb: circleci/aws-elastic-beanstalk@1.0.0
+
 jobs:
   eb-demo:
-    docker:
-      - image: 'cimg/base:stable'
-    parameters:
-      provider: elasticbeanstalk
-      region: "us-east-1"
-      name: "docker-myp"
-      env: "Dockermyp-env"
-      bucket_name: "elasticbeanstalk-us-east-1-120220778529"
-      bucket_path: "docker-myp"
-      on:
-        branch: master
-      access_key_id: $AWS_ACCESS_KEY
-      secret_access_key: "$AWS_SECRET_KEY"
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/with-cache:
+          steps:
+            - run: npm install
+            - run: npm test
+            - run:
+                name: Installing deployment dependencies
+                command: |
+                  sudo apt-get -y -qq update
+                  sudo apt-get install python-pip python-dev build-essential
+                  sudo pip install --upgrade setuptools
+                  sudo pip install awsebcli --upgrade
+            - run:
+                name: Deploying
+                command: |
+                  eb deploy Dockermyp-env
     # parameters:
     #   app-dir:
     #       default: .
@@ -114,12 +123,10 @@ jobs:
       #     command: eb deploy Dockermyp-env
 
 
-orbs: 
-  eb: circleci/aws-elastic-beanstalk@1.0.0
 workflows:
   version: 2
   build-deploy:
     jobs:
       - build 
-      - eb-demo
-
+      - eb-demo:
+          context: aws
