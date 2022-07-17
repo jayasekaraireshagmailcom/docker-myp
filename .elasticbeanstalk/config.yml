@@ -1,9 +1,9 @@
 branch-defaults:
   master:
-    environment: "Dockermyp-env"
+    environment: Dockermyp-env
 global:
-  application_name: "docker-myp"
-  default_ec2_keyname: "elasticbeanstalk:120220778529"
-  default_platform: "Docker running on 64bit Amazon Linux 2"
-  default_region: "us-east-1"
+  application_name: docker-myp
+  default_ec2_keyname: elasticbeanstalk:120220778529
+  default_platform: Docker running on 64bit Amazon Linux 2
+  default_region: us-east-1
   sc: git
