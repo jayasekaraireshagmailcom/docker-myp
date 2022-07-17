@@ -36,8 +36,7 @@
 #           docker build -t diliniiresha/docker-myp -f Dockerfile.dev .
 #           docker run diliniiresha/docker-myp npm run test -- --coverage
 version: 2.1
-orbs: 
-  aws-elastic-beanstalk: circleci/aws-elastic-beanstalk@2.0.1
+
 
 
 
@@ -63,16 +62,24 @@ jobs:
           docker build -t diliniiresha/docker-myp -f Dockerfile.dev .
           docker run diliniiresha/docker-myp npm run test -- --coverage
   deploy:
-    branch-defaults:
-      master:
+    docker:
+      orbs: 
+        aws-elastic-beanstalk: circleci/aws-elastic-beanstalk@2.0.1    
+      auth:
         access_key_id: $AWS_ACCESS_KEY
         secret_access_key: "$AWS_SECRET_KEY"
-        provider: elasticbeanstalk
-        region: "us-east-1"
-        name: "docker-myp"
-        env: "Dockermyp-env"
-        bucket_name: "elasticbeanstalk-us-east-1-120220778529"
-        bucket_path: "docker-myp"
+    steps:
+      - checkout
+      - run: |
+          on:
+            branch: master
+
+            provider: elasticbeanstalk
+            region: "us-east-1"
+            name: "docker-myp"
+            env: "Dockermyp-env"
+            bucket_name: "elasticbeanstalk-us-east-1-120220778529"
+            bucket_path: "docker-myp"
 
 
 workflows:
