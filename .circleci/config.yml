@@ -25,7 +25,7 @@ jobs:
           username: $DOCKER_USER
           password: $DOCKER_PW
     steps:
-      - checkout:
+      - checkout
 
 
       - run: |
