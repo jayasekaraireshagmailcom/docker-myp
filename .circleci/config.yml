@@ -58,9 +58,9 @@ jobs:
           docker_layer_caching: true
 
       # build and push Docker image
-      - run: |
-          docker build -t diliniiresha/docker-myp -f Dockerfile.dev .
-          docker run diliniiresha/docker-myp npm run test -- --coverage
+      # - run: |
+      #     docker build -t diliniiresha/docker-myp -f Dockerfile.dev .
+      #     docker run diliniiresha/docker-myp npm run test -- --coverage
       - run:
           name: Deploying
           command: eb deploy Dockermyp-env
