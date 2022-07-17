@@ -41,17 +41,17 @@ jobs:
   eb-demo:
     docker:
       - image: 'cimg/base:stable'
-      parameters:
-        provider: elasticbeanstalk
-        region: "us-east-1"
-        name: "docker-myp"
-        env: "Dockermyp-env"
-        bucket_name: "elasticbeanstalk-us-east-1-120220778529"
-        bucket_path: "docker-myp"
-        on:
-          branch: master
-        access_key_id: $AWS_ACCESS_KEY
-        secret_access_key: "$AWS_SECRET_KEY"
+    parameters:
+      provider: elasticbeanstalk
+      region: "us-east-1"
+      name: "docker-myp"
+      env: "Dockermyp-env"
+      bucket_name: "elasticbeanstalk-us-east-1-120220778529"
+      bucket_path: "docker-myp"
+      on:
+        branch: master
+      access_key_id: $AWS_ACCESS_KEY
+      secret_access_key: "$AWS_SECRET_KEY"
     # parameters:
     #   app-dir:
     #       default: .
