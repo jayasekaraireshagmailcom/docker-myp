@@ -46,12 +46,10 @@ jobs:
       name: node/default
     steps:
       - checkout
-      
-      steps:
-        - run:
-            name: Deploying
-            command: |
-              eb deploy Dockermyp-env
+      - run:
+          name: Deploying
+          command: |
+            eb deploy Dockermyp-env
     # parameters:
     #   app-dir:
     #       default: .
