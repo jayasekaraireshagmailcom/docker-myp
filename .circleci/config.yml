@@ -73,7 +73,7 @@ jobs:
           type: string
     steps:
       - checkout
-      - eb
+      - eb: circleci/aws-elastic-beanstalk@1.0.0
       - run:
           command: |
             eb init <<parameters.application-name>> -r $AWS_DEFAULT_REGION -p <<parameters.platform-version>>
