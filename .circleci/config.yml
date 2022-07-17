@@ -80,7 +80,5 @@ workflows:
   build-deploy:
     jobs:
       - build 
-  elastic-beanstalk-workflow:
-  jobs:
-    - eb-demo  
+      - eb-demo  
 
