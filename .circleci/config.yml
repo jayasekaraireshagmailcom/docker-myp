@@ -120,5 +120,4 @@ workflows:
   build-deploy:
     jobs:
       - build 
-      - eb-demo:
-          context: aws
+      - eb-demo
