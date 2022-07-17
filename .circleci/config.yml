@@ -95,10 +95,5 @@ workflows:
   build-deploy:
     jobs:
       - build
-      - deploy:
-          filters:
-            branches:
-              only:
-                - staging
-                - master      
+      - deploy     
 
