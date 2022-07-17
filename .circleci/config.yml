@@ -42,8 +42,11 @@ orbs:
 
 jobs:
   eb-demo:
-    executor:
-      name: node/default
+    docker:
+      - image: cimg/go:1.17
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
       - run:
