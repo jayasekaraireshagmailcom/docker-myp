@@ -73,9 +73,11 @@ jobs:
           type: string
     steps:
       - checkout
-      - eb: circleci/aws-elastic-beanstalk@1.0.0
+      - setup
+      
       - run:
           command: |
+            eb: circleci/aws-elastic-beanstalk@1.0.0
             eb init <<parameters.application-name>> -r $AWS_DEFAULT_REGION -p <<parameters.platform-version>>
             eb deploy <<parameters.environment-name>> <<#parameters.label>>-l <<parameters.label>><</parameters.label>> <<#parameters.description>>-m <<parameters.description>><</parameters.description>>
           name: EB Deploy
