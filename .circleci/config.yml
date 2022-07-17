@@ -79,5 +79,6 @@ workflows:
   version: 2
   build-deploy:
     jobs:
-      - build     
+      - build   
+      - deploy  
 
