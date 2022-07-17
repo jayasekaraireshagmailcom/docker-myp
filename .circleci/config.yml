@@ -20,7 +20,7 @@ jobs:
             echo 'export IMAGE_NAME=python-circleci-docker' >> $BASH_ENV 
   test:
     docker:
-      - image: docker:alpine
+      - image: docker:20220715
         auth: 
           username: $DOCKER_USER
           password: $DOCKER_PW
