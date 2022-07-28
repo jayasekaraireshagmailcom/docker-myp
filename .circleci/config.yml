@@ -49,6 +49,7 @@ jobs:
       - checkout
       - run:
           name: Deploying
+          eb: circleci/aws-elastic-beanstalk@1.0.0
           command: |
             eb deploy Dockermyp-env
             eb status
