@@ -51,8 +51,8 @@ jobs:
           name: Deploying
           
           command: |
-            apk add --update python python-dev py-pip build-base jq zip            
-            pip install --upgrade awsebcli
+
+            npm install --upgrade awsebcli
             eb deploy Dockermyp-env
             eb status
     # parameters:
