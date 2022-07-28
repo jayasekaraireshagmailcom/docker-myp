@@ -49,8 +49,10 @@ jobs:
       - checkout
       - run:
           name: Deploying
-          eb: circleci/aws-elastic-beanstalk@1.0.0
+          
           command: |
+            apk add --update python python-dev py-pip build-base jq zip            
+            pip install --upgrade awsebcli
             eb deploy Dockermyp-env
             eb status
     # parameters:
