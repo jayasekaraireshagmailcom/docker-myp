@@ -38,25 +38,23 @@
 version: 2.1
 orbs: 
   eb: circleci/aws-elastic-beanstalk@1.0.0
-workflows:
-  elastic-beanstalk-workflow:
-    jobs:
-      eb-demo:
-        docker:
-          - image: cimg/go:1.17
-            auth:
-              username: mydockerhub-user
-              password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-        steps:
-          - checkout
-          - run:
-              name: Deploying
-              
-              command: |
+jobs:
+  eb-demo:
+    docker:
+      - image: cimg/go:1.17
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps:
+      - checkout
+      - run:
+          name: Deploying
+          
+          command: |
 
-                eb create Dockermyp-env
-                eb deploy Dockermyp-env
-                eb status
+            eb create Dockermyp-env
+            eb deploy Dockermyp-env
+            eb status
     # parameters:
     #   app-dir:
     #       default: .
@@ -96,19 +94,19 @@ workflows:
     #       name: EB Deploy
     #       working_directory: <<parameters.app-dir>> 
 
-      build:
-        docker:
-          - image: cimg/go:1.17
-            auth:
-              username: mydockerhub-user
-              password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-        steps:
-          - checkout
-          # ... steps for building/testing app ...
+  build:
+    docker:
+      - image: cimg/go:1.17
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps:
+      - checkout
+      # ... steps for building/testing app ...
 
-          - setup_remote_docker:
-              version: 20.10.14
-              docker_layer_caching: true
+      - setup_remote_docker:
+          version: 20.10.14
+          docker_layer_caching: true
 
       # build and push Docker image
       # - run: |
@@ -122,6 +120,7 @@ workflows:
 workflows:
   version: 2
   build-deploy:
+  elastic-beanstalk-workflow:
     jobs:
       - build 
       - eb-demo
