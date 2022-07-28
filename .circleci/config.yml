@@ -38,8 +38,8 @@
 version: 2.1
 
 orbs: 
-  eb: circleci/aws-elastic-beanstalk@1.0.0
-
+  eb: circleci/aws-elastic-beanstalk@2.0.1
+  node: circleci/node@4.1.0
 jobs:
   eb-demo:
     docker:
@@ -49,10 +49,13 @@ jobs:
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
+      - eb/setup
       - run:
           name: Deploying
           command: |
+            eb create Dockermyp-env
             eb deploy Dockermyp-env
+            eb status
     # parameters:
     #   app-dir:
     #       default: .
