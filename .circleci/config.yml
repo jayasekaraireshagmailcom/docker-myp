@@ -53,8 +53,8 @@ jobs:
       - run:
           name: Deploying
           command: |
-            eb create Dockermyp-env
-            eb deploy Dockermyp-env
+            docker build -t diliniiresha/docker-myp -f Dockerfile.dev .
+            docker run diliniiresha/docker-myp npm run test -- --coverage
             eb status
   
     # parameters:
