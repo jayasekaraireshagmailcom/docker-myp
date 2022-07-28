@@ -53,7 +53,6 @@ jobs:
       - run:
           name: Deploying
           command: |
-            echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin $DOCKER_PW
             docker build -t diliniiresha/docker-myp -f Dockerfile.dev .
             docker run diliniiresha/docker-myp npm run test -- --coverage
             eb status
