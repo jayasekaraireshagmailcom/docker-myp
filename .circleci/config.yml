@@ -45,14 +45,15 @@ jobs:
     docker:
       - image: cimg/go:1.17
         auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+          username: $DOCKER_USER
+          password: $DOCKER_PW  # context / project UI env-var reference
     steps:
       - checkout
       - eb/setup
       - run:
           name: Deploying
           command: |
+
             docker build -t diliniiresha/docker-myp -f Dockerfile.dev .
             docker run diliniiresha/docker-myp npm run test -- --coverage
             eb status
