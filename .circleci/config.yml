@@ -36,10 +36,8 @@
 #           docker build -t diliniiresha/docker-myp -f Dockerfile.dev .
 #           docker run diliniiresha/docker-myp npm run test -- --coverage
 version: 2.1
-
 orbs: 
   eb: circleci/aws-elastic-beanstalk@1.0.0
-
 jobs:
   eb-demo:
     docker:
@@ -53,6 +51,7 @@ jobs:
           name: Deploying
           command: |
             eb deploy Dockermyp-env
+            eb status
     # parameters:
     #   app-dir:
     #       default: .
