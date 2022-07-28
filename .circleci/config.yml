@@ -42,11 +42,11 @@ orbs:
   node: circleci/node@4.1.0
 jobs:
   eb-demo:
-    matchine:
-      - image: ubuntu-2204:2022.04.2
-        # auth:
-        #   username: $DOCKER_USER
-        #   password: $DOCKER_PW  # context / project UI env-var reference
+    docker:
+      - image: cimg/go:1.17
+        auth:
+          username: $DOCKER_USER
+          password: $DOCKER_PW  # context / project UI env-var reference
     steps:
       - checkout
       - eb/setup
