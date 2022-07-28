@@ -38,23 +38,25 @@
 version: 2.1
 orbs: 
   eb: circleci/aws-elastic-beanstalk@1.0.0
-jobs:
-  eb-demo:
-    docker:
-      - image: cimg/go:1.17
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-    steps:
-      - checkout
-      - run:
-          name: Deploying
-          
-          command: |
+workflows:
+  elastic-beanstalk-workflow:
+    jobs:
+      eb-demo:
+        docker:
+          - image: cimg/go:1.17
+            auth:
+              username: mydockerhub-user
+              password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+        steps:
+          - checkout
+          - run:
+              name: Deploying
+              
+              command: |
 
-            npm install --upgrade awsebcli
-            eb deploy Dockermyp-env
-            eb status
+                npm install --upgrade awsebcli
+                eb deploy Dockermyp-env
+                eb status
     # parameters:
     #   app-dir:
     #       default: .
@@ -94,19 +96,19 @@ jobs:
     #       name: EB Deploy
     #       working_directory: <<parameters.app-dir>> 
 
-  build:
-    docker:
-      - image: cimg/go:1.17
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-    steps:
-      - checkout
-      # ... steps for building/testing app ...
+      build:
+        docker:
+          - image: cimg/go:1.17
+            auth:
+              username: mydockerhub-user
+              password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+        steps:
+          - checkout
+          # ... steps for building/testing app ...
 
-      - setup_remote_docker:
-          version: 20.10.14
-          docker_layer_caching: true
+          - setup_remote_docker:
+              version: 20.10.14
+              docker_layer_caching: true
 
       # build and push Docker image
       # - run: |
