@@ -43,16 +43,18 @@ orbs:
 jobs:
   eb-demo:
     docker:
-      - image: cimg/go:1.17
-        auth:
-          username: $DOCKER_USER
-          password: $DOCKER_PW  # context / project UI env-var reference
+      matchine: true
+      # - image: cimg/go:1.17
+      #   auth:
+      #     username: $DOCKER_USER
+      #     password: $DOCKER_PW  # context / project UI env-var reference
     steps:
       - checkout
       - eb/setup
       - run:
           name: Deploying
           command: |
+            docker login -u $DOCKER_USER -p $DOCKER_PW
             docker build -t diliniiresha/docker-myp -f Dockerfile.dev .
             docker run diliniiresha/docker-myp npm run test -- --coverage
             eb status
