@@ -43,7 +43,7 @@ orbs:
 jobs:
   eb-demo:
     matchine:
-      image: ubuntu-2204:2022.04.2
+      - image: ubuntu-2204:2022.04.2
 
       # - image: cimg/go:1.17
         # auth:
