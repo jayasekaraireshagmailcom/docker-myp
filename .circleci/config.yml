@@ -55,9 +55,9 @@ jobs:
           name: Deploying
           command: |
             echo "$DOCKER_PW" | docker login -u "$DOCKER_USER" --password-stdin
-            docker build -t diliniiresha/docker-myp -f Dockerfile.dev .
-            docker run diliniiresha/docker-myp npm run test -- --coverage
-            docker push diliniiresha/docker-myp
+            docker build -t diliniiresha/docker-myp -f Dockerfile .
+            docker run diliniiresha/docker-myp npm run start -- --coverage
+            docker push diliniiresha/docker-myp:$CIRCLE_BRANCH
             eb status
   
     # parameters:
