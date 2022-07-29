@@ -56,7 +56,7 @@ jobs:
           command: |
             echo "$DOCKER_PW" | docker login -u "$DOCKER_USER" --password-stdin
             docker build -t diliniiresha/docker-myp -f Dockerfile .
-            docker run diliniiresha/docker-myp node run test -- --coverage
+            docker run diliniiresha/docker-myp
             docker push diliniiresha/docker-myp:$CIRCLE_BRANCH
             eb status
   
