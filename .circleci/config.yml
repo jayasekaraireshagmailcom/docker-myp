@@ -59,8 +59,6 @@ jobs:
 
             # docker run diliniiresha/docker-myp
             docker push diliniiresha/docker-myp:$TAG
-            # docker run -d --name docker-myp docker-myp:latest
-            # docker exec docker-myp curl --retry 10 --retry-connrefused http://localhost:80
             # eb status
   
     # parameters:
