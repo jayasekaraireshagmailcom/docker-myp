@@ -59,7 +59,8 @@ jobs:
             echo "$DOCKER_PW" | docker login -u "$DOCKER_USER" --password-stdin
 
             # docker run diliniiresha/docker-myp
-            docker push diliniiresha/docker-myp:$TAG
+            docker tag $TAG:latest diliniiresha/docker-myp
+            docker push diliniiresha/docker-myp
             # eb status
   
     # parameters:
