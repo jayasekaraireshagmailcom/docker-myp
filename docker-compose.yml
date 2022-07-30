@@ -4,6 +4,5 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: frontend_web:latest
     ports:
       - '80:80'
