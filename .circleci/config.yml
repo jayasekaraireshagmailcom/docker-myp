@@ -54,12 +54,11 @@ jobs:
       - run:
           name: Deploying
           command: |
-
-            docker build -t diliniiresha/docker-myp -f Dockerfile .
+            docker build -t diliniiresha/docker-myp:$TAG -f Dockerfile .
             echo "$DOCKER_PW" | docker login -u "$DOCKER_USER" --password-stdin
 
             # docker run diliniiresha/docker-myp
-            docker push diliniiresha/docker-myp:$CIRCLE_BRANCH
+            docker push diliniiresha/docker-myp:$TAG
             # docker run -d --name docker-myp docker-myp:latest
             # docker exec docker-myp curl --retry 10 --retry-connrefused http://localhost:80
             # eb status
