@@ -58,8 +58,8 @@ jobs:
             docker logout localhost:80
             echo "$DOCKER_PW" | docker login -u "$DOCKER_USER" --password-stdin
             # docker run diliniiresha/docker-myp
-            docker tag $TAG diliniiresha/docker-myp
-            docker push diliniiresha/docker-myp
+            # docker tag $TAG diliniiresha/docker-myp
+            docker push diliniiresha/docker-myp:$TAG
   
     # parameters:
     #   app-dir:
