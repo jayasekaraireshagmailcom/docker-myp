@@ -54,7 +54,7 @@ jobs:
       - run:
           name: Deploying
           command: |
-            docker build -t diliniiresha/docker-myp -f Dockerfile .
+            docker build -t diliniiresha/docker-myp:$TAG -f Dockerfile .
             docker logout localhost:80
             echo "$DOCKER_PW" | docker login -u "$DOCKER_USER" --password-stdin
             # docker run diliniiresha/docker-myp
