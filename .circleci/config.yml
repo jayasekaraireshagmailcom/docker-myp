@@ -55,7 +55,6 @@ jobs:
           name: Deploying
           command: |
             docker build -t diliniiresha/docker-myp -f Dockerfile .
-            docker logout localhost:80
             echo "$DOCKER_PW" | docker login -u "$DOCKER_USER" --password-stdin
             # docker run diliniiresha/docker-myp
             # docker tag 16-alpine diliniiresha/docker-myp
