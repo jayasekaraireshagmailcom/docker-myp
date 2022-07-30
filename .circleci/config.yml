@@ -61,7 +61,6 @@ jobs:
             # docker run diliniiresha/docker-myp
             docker tag $TAG diliniiresha/docker-myp
             docker push diliniiresha/docker-myp
-            # eb status
   
     # parameters:
     #   app-dir:
