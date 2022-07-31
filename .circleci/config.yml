@@ -43,7 +43,7 @@ orbs:
 jobs:
   eb-demo:
     docker:
-      - image: node:16-alpine
+      - image: cimg/go:1.17
         auth:
           username: $DOCKER_USER
           password: $DOCKER_PW  # context / project UI env-var reference
@@ -56,7 +56,7 @@ jobs:
           command: |
             docker build -t diliniiresha/docker-myp:0.0.1 -f Dockerfile .
             echo "$DOCKER_PW" | docker login -u "$DOCKER_USER" --password-stdin
-            # docker tag 0.1.0 diliniiresha/docker-myp
+            docker tag 0.0.1 diliniiresha/docker-myp
             docker push diliniiresha/docker-myp:0.0.1
   
     # parameters:
