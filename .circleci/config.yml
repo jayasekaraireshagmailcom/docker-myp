@@ -58,7 +58,6 @@ jobs:
             echo "$DOCKER_PW" | docker login -u "$DOCKER_USER" --password-stdin
             docker tag 0.0.1 diliniiresha/docker-myp
             docker push diliniiresha/docker-myp:0.0.1
-jobs:
   deploy:
     working_directory: ~/app
     docker:
