@@ -57,8 +57,8 @@ jobs:
             docker build -t diliniiresha/docker-myp -f Dockerfile .
             echo "$DOCKER_PW" | docker login -u "$DOCKER_USER" --password-stdin
             # docker run diliniiresha/docker-myp
-            docker tag docker-myp diliniiresha/docker-myp
-            docker push diliniiresha/docker-myp
+            docker tag app diliniiresha/docker-myp:0.1.0
+            docker push diliniiresha/docker-myp:0.1.0
   
     # parameters:
     #   app-dir:
