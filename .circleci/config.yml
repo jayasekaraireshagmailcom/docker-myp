@@ -55,7 +55,7 @@ jobs:
           name: Deploying
           command: |
             docker build -t cimg/go:1.17 -f Dockerfile .
-            # echo "$DOCKER_PW" | docker login -u "$DOCKER_USER" --password-stdin
+            echo "$DOCKER_PW" | docker login -u "$DOCKER_USER" --password-stdin
             # docker tag 0.1.0 diliniiresha/docker-myp
             docker push cimg/go:1.17
   
