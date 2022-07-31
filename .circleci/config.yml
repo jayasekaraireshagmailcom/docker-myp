@@ -54,10 +54,11 @@ jobs:
       - run:
           name: Deploying
           command: |
-            docker build -t diliniiresha/docker-myp:0.0.1 -f Dockerfile .
-            echo "$DOCKER_PW" | docker login -u "$DOCKER_USER" --password-stdin
-            docker tag 0.0.1 diliniiresha/docker-myp
-            docker push diliniiresha/docker-myp:0.0.1
+            # docker build -t diliniiresha/docker-myp:0.0.1 -f Dockerfile .
+            # echo "$DOCKER_PW" | docker login -u "$DOCKER_USER" --password-stdin
+            # docker tag 0.0.1 diliniiresha/docker-myp
+            # docker push diliniiresha/docker-myp:0.0.1
+            eb deploy $CIRCLE_BRANCH
   deploy:
     working_directory: ~/app
     docker:
@@ -144,4 +145,4 @@ workflows:
   build-deploy:
     jobs:
       # - build 
-      - deploy
+      - eb-demo
