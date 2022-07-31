@@ -56,7 +56,6 @@ jobs:
           command: |
             docker build -t diliniiresha/docker-myp -f Dockerfile .
             echo "$DOCKER_PW" | docker login -u "$DOCKER_USER" --password-stdin
-            # docker run diliniiresha/docker-myp
             docker tag 0.1.0 diliniiresha/docker-myp
             docker push diliniiresha/docker-myp:0.1.0
   
