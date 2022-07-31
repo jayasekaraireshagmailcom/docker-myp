@@ -58,6 +58,25 @@ jobs:
             echo "$DOCKER_PW" | docker login -u "$DOCKER_USER" --password-stdin
             docker tag 0.0.1 diliniiresha/docker-myp
             docker push diliniiresha/docker-myp:0.0.1
+jobs:
+  deploy:
+    working_directory: ~/app
+    docker:
+      - image: circleci/ruby:2.4.3
+    steps:
+      - checkout
+
+      - run:
+          name: Installing deployment dependencies
+          working_directory: /
+          command: |
+            sudo apt-get -y -qq update
+            sudo apt-get install python3-pip python3-dev build-essential
+            sudo pip3 install awsebcli
+
+      - run:
+          name: Deploying
+          command: eb deploy $CIRCLE_BRANCH
   
     # parameters:
     #   app-dir:
@@ -126,4 +145,4 @@ workflows:
   build-deploy:
     jobs:
       # - build 
-      - eb-demo
+      - deploy
